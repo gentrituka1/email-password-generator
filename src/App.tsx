@@ -35,26 +35,36 @@ export default function App() {
     setPasswordLength(value)
   }
 
+  function handleCopyPassword() {
+    navigator.clipboard.writeText(password)
+  }
+
+  function handleCopyEmail(){
+    navigator.clipboard.writeText(email)
+  }
+
   return (
     <div className="App">
+      <h1>Email Generator</h1>
+      <div className="email">
+        <h2>{email}</h2>
+        <button onClick={() => {
+          generateEmail()
+        }}>Generate Email</button>
+        <button onClick={handleCopyEmail}>Copy Email</button>
+      </div>
       <h1>Password Generator</h1>
       <div className="password">
         <h2>{password}</h2>
         <button onClick={() => {
           generatePassword()
         }}>Generate Password</button>
+        <button onClick={handleCopyPassword}>Copy Password</button>
       </div>
       <div className="length">
         <label htmlFor="length">Password Length</label>
         <input type="number" value={passwordLength} onChange={(e) => handlePasswordLength(e.target.value)} />
       </div>
-      <div className="email">
-        <h2>{email}</h2>
-        <button onClick={() => {
-          generateEmail()
-        }}>Generate Email</button>
-      </div>
-      
     </div>
   )
 }
